@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.max-w-text {
+  max-width: 500px;
+}
+
+.reveal-text-container {
+  overflow: hidden;
+}
+
+.reveal-text {
+  transform: translateY(0);
+  transition: all 0.5s ease-in-out;
+}
+
+.reveal-text--hidden {
+  transform: translateY(100px);
+}
+
+.reveal-text-parent span {
+  display: inline-block;
+}
