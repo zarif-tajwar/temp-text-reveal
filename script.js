@@ -43,13 +43,23 @@ revealTextParents.forEach((revealTextParent) => {
 });
 
 function animateText(revealTextParent) {
-  const duration =
-    Number.parseInt(revealTextParent.dataset.durationInMs) ||
-    defaultDurationInMs;
+  let duration, staggerDelay;
+
   const ease = revealTextParent.dataset.easing || defaultEasing;
-  const staggerDelay =
-    Number.parseInt(revealTextParent.dataset.staggerDelayInMS) ||
-    defaultStaggerDelayInMS;
+
+  const parsedDuration = Number.parseInt(revealTextParent.dataset.durationInMs);
+  const parsedStaggerDelay = Number.parseInt(
+    revealTextParent.dataset.staggerDelayInMs
+  );
+
+  duration =
+    parsedDuration === 0 || parsedDuration
+      ? parsedDuration
+      : defaultDurationInMs;
+  staggerDelay =
+    parsedStaggerDelay === 0 || parsedDuration
+      ? parsedStaggerDelay
+      : defaultStaggerDelayInMS;
 
   const lines = [];
 
@@ -76,8 +86,6 @@ function animateText(revealTextParent) {
   }
 
   lines.push(currentLineGroup);
-
-  lines.reverse();
 
   (async () => {
     for (let i = 0; i < lines.length; i++) {
