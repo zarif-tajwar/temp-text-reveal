@@ -3,6 +3,7 @@
 const scrollThreshold = 0.8;
 const defaultDurationInMs = 700;
 const defaultEasing = "ease";
+const defaultStaggerDelayInMS = 150;
 
 async function sleep(delayInMS) {
   return new Promise((res) => setTimeout(res, delayInMS));
@@ -30,6 +31,8 @@ function animateText(revealTextParent) {
     Number.parseInt(revealTextParent.dataset.durationInMs) ||
     defaultDurationInMs;
   const ease = revealTextParent.dataset.durationInMs || defaultEasing;
+  const staggerDelay =
+    revealTextParent.dataset.staggerDelayInMS || defaultStaggerDelayInMS;
 
   const lines = [];
 
@@ -62,7 +65,7 @@ function animateText(revealTextParent) {
   (async () => {
     for (let i = 0; i < lines.length; i++) {
       if (i !== 0) {
-        await sleep(0.3);
+        await sleep(staggerDelay);
       }
       lines[i].forEach((lineText) => {
         lineText.classList.remove("reveal-text--hidden");
@@ -74,7 +77,6 @@ function animateText(revealTextParent) {
 const textObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      console.log(entry);
       const revealTextParent = entry.target;
       if (entry.isIntersecting) {
         animateText(revealTextParent);
