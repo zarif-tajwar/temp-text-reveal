@@ -22,11 +22,11 @@
 }
 
 .reveal-text {
-  transform: translateY(0px);
+  transform: translateY(0%);
 }
 
 .reveal-text--hidden {
-  transform: translateY(100px);
+  transform: translateY(100%);
 }
 
 .reveal-text-parent span {

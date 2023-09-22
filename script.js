@@ -1,9 +1,23 @@
 "use strict";
 
+/* Change the default values from here. These values apply for all elements by default.  */
+
 const scrollThreshold = 0.8;
 const defaultDurationInMs = 700;
 const defaultEasing = "ease";
 const defaultStaggerDelayInMS = 150;
+
+/* 
+NOTES: 
+
+These data properties can be added in "reveal-text-parent" elements to
+control their animation individually.
+
+"data-duration-in-ms"
+"data-easing" 
+"data-stagger-delay-in-ms"
+
+*/
 
 async function sleep(delayInMS) {
   return new Promise((res) => setTimeout(res, delayInMS));
@@ -21,7 +35,9 @@ revealTextParents.forEach((revealTextParent) => {
   wordsArray.forEach((word) => {
     revealTextParent.insertAdjacentHTML(
       "beforeend",
-      `<span class='reveal-text-container'><span class='reveal-text reveal-text--hidden'>${word}&nbsp;</span></span>`
+      `<span class='reveal-text-container'>
+            <span class='reveal-text reveal-text--hidden'>${word}&nbsp;</span>
+       </span>`
     );
   });
 });
@@ -30,9 +46,10 @@ function animateText(revealTextParent) {
   const duration =
     Number.parseInt(revealTextParent.dataset.durationInMs) ||
     defaultDurationInMs;
-  const ease = revealTextParent.dataset.durationInMs || defaultEasing;
+  const ease = revealTextParent.dataset.easing || defaultEasing;
   const staggerDelay =
-    revealTextParent.dataset.staggerDelayInMS || defaultStaggerDelayInMS;
+    Number.parseInt(revealTextParent.dataset.staggerDelayInMS) ||
+    defaultStaggerDelayInMS;
 
   const lines = [];
 
