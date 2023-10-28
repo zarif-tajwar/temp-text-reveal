@@ -22,9 +22,7 @@ control their animation individually.
 
 */
 
-async function sleep(delayInMS) {
-  return new Promise((res) => setTimeout(res, delayInMS));
-}
+const sleep = (delayInMS) => new Promise((res) => setTimeout(res, delayInMS));
 
 const revealTextParents = document.querySelectorAll(".reveal-text-parent");
 
