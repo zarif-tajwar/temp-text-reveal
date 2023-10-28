@@ -21,10 +21,9 @@ control their animation individually.
 "data-scroll-viewport-percentage" : between 0-100
 
 */
+const revealTextParents = document.querySelectorAll(".reveal-text-parent");
 
 const sleep = (delayInMS) => new Promise((res) => setTimeout(res, delayInMS));
-
-const revealTextParents = document.querySelectorAll(".reveal-text-parent");
 
 revealTextParents.forEach((revealTextParent) => {
   const wordsArray = revealTextParent.textContent
